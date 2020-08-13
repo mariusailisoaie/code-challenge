@@ -1,29 +1,5 @@
 const { getColor } = require('./apiMock');
 
-class Color {
-	constructor(name) {
-		this.name = name
-	}
-}
-
-class Green extends Color {
-	constructor() {
-		super('green');
-	}
-}
-
-class Blue extends Color {
-	constructor() {
-		super('blue');
-	}
-}
-
-class Red extends Color {
-	constructor() {
-		super('Red');
-	}
-}
-
 async function getColors(green, blue, red, order, callback) {
 	const colors = [];
 	if (green) colors[order.indexOf('green')] = getColor('green');
@@ -40,9 +16,7 @@ function colors() {
 	const colorOrder = process.argv[5]
 	getColors(green, blue, red, JSON.parse(colorOrder), async function (colors) {
 		colors = await Promise.all(colors)
-		var hexColors = []
-		colors.forEach(color => hexColors.push(color.HEX))
-		console.log("Red " + hexColors[0], "Green " + hexColors[1]);
+		colors.forEach(color => console.log(`${ color.name } ${ color.HEX } rgb(${ color.RGB.R }, ${ color.RGB.G }, ${ color.RGB.B })`));
 	});
 }
 
