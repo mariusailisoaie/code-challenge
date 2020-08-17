@@ -21,7 +21,7 @@ function colors() {
 	let blue = process.argv.indexOf('blue');
 	let red = process.argv.indexOf('red');
 	const colorOrder = process.argv[process.argv.length - 1];
-	getColors(green, blue, red, black !== undefined && black, white !== undefined && white, JSON.parse(colorOrder), async function (colors) {
+	getColors(green, blue, red, black, white, JSON.parse(colorOrder), async function (colors) {
 		colors = await Promise.all(colors)
 		colors.forEach(color => console.log(`${ color.name } ${ color.HEX } rgb(${ color.RGB.R }, ${ color.RGB.G }, ${ color.RGB.B })`));
 	});
